@@ -10,7 +10,7 @@ Based on the [Microsoft CNTK](https://docs.microsoft.com/en-us/cognitive-toolkit
 Run the following to import commands
 
 ```
-$ docker pull microsoft/cntk:2.0-cpu-python3.5
+$ docker pull microsoft/cntk:2.1-cpu-python3.5
 $ source scripts.sh
 ```
 
