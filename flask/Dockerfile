@@ -108,7 +108,7 @@ RUN set -ex \
 
 	# uwsgi
 	&& pip install http://projects.unbit.it/downloads/uwsgi-lts.tar.gz \
- 
+
 	# ssh
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends openssh-server \
@@ -143,5 +143,5 @@ RUN set -ex \
 
 COPY entrypoint.sh /usr/local/bin
 RUN chmod u+x /usr/local/bin/entrypoint.sh
-EXPOSE 2222 8080
+EXPOSE 2222 80
 ENTRYPOINT ["entrypoint.sh"]

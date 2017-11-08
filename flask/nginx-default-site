@@ -5,15 +5,15 @@ upstream app {
 
 #
 server {
-	listen 8080 default_server;
-	listen [::]:8080 default_server;
+	listen 80 default_server;
+	listen [::]:80 default_server;
 
 	root /home/site/wwwroot;
 	index index.html index.htm index.nginx-debian.html;
 
 	server_name _;
 	charset utf-8;
-	
+
 	location /images {
 	}
 
@@ -31,5 +31,3 @@ server {
                 include /etc/nginx/uwsgi_params;
         }
 }
-
-
