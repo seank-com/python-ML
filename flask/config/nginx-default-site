@@ -1,33 +1,25 @@
+# See these pages for info on configuring nginx
 #
-upstream app {
-	server unix:///tmp/uwsgi.sock;
+# https://github.com/seank-com/notes/blob/master/machine-config/Linux-server.md#setting-up-a-node-server
+# http://nginx.org/en/docs/http/websocket.html
+
+map $http_upgrade $connection_upgrade {
+  default upgrade;
+  '' close;
 }
 
-#
 server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
+  listen 80 default_server;
+  listen [::]:80 default_server;
 
-	root /home/site/wwwroot;
-	index index.html index.htm index.nginx-debian.html;
+  # Proxy pass-though to the local node server
+  location / {
+    proxy_pass http://127.0.0.1:5000/;
 
-	server_name _;
-	charset utf-8;
-
-	location /images {
-	}
-
-	location /css {
-	}
-
-	location /js {
-	}
-
-	location /static {
-	}
-
-        location / {
-                uwsgi_pass app;
-                include /etc/nginx/uwsgi_params;
-        }
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+  }
 }
