@@ -26,8 +26,10 @@ if [ "$1" == "start-service" ]; then
   echo "INFO: starting nginx ..."
   nginx #-g "daemon off;"
 
-  exec "/bin/ps -ax"
+  echo "INFO: starting flask"
+  cd /home/app
+  flask run
+else
+  echo "INFO: running alternate command"
+  exec "$@"
 fi
-
-echo "INFO: running alternate command"
-exec "$@"
