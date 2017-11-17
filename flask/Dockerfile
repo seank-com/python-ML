@@ -18,6 +18,8 @@ RUN set -ex \
 	&& echo "$SSH_PASSWD" | chpasswd \
 	&& source /cntk/activate-cntk \
 	&& pip install flask \
+	&& pip install tensorflow \
+	&& pip install opencv-contrib-python==3.3.0.9 \
 	&& apt-get purge -y -V -o APT::AutoRemove::RecommendsImportant=false --auto-remove $tools $buildTimeDeps \
 	&& apt-get autoremove -y
 
@@ -41,7 +43,7 @@ RUN chmod u+x /usr/local/bin/entrypoint.sh
 # flask config
 ENV LC_ALL "C.UTF-8"
 ENV LANG "C.UTF-8"
-ENV FLASK_APP "app"
+ENV FLASK_APP "/home/app/app.py"
 
 WORKDIR /home
 
