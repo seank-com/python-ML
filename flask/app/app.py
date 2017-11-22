@@ -60,3 +60,13 @@ def process():
                     status=200,
                     mimetype="application/json")
     return resp
+
+def preprocess(image, input_height=224, input_width=224, input_mean=128, input_std=128):
+
+    resizeimg = cv2.resize(image, (input_width, input_height)).astype(float)
+
+    img = (resizeimg - input_mean) / input_std
+
+    img = np.expand_dims(img, axis=0)
+
+    return img, resizeimg

@@ -75,3 +75,9 @@ $ docker login seank.azurecr.io -u SeanK -p password
 $ docker tag imagerec seank.azurecr.io/imagerec:latest
 $ docker push seank.azurecr.io/imagerec:latest
 ```
+
+### Test
+
+```bash
+$ curl curl --header "Content-Type:application/octet-stream"  --data-binary @Mike.jpg http://imagerec.azurewebsites.net
+```
