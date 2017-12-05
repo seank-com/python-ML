@@ -27,7 +27,35 @@ cd flask
 docker build -t imagerec .
 ```
 
+### Deploy to Azure
+
+If you haven't created an Azure Container Registry yet
+
+Go to the [Azure Portal](http://portal.azure.com)
+- Click "Create a resource"
+- Search for "Azure Container Registry"
+- Click Azure Container Registry
+- Click Create
+  - Fill in the entries (most entries are your choice, except the following)
+    - Location: should be the same as the webservice below
+    - Admin user: Enable
+    - SKU: basic is sufficient
+    - Check "pin to dashboard"
+    - Click Create
+
+From a command prompt run the following
+
+_**Note:** registry, user and password can be found under Access keys on the Azure Container Registry_
+
+```bash
+$ docker login registry.azurecr.io -u user -p password
+$ docker tag imagerec seank.azurecr.io/imagerec:latest
+$ docker push seank.azurecr.io/imagerec:latest
+```
+
 ### Configure Azure
+
+_**Note:** registry, user and password can be found under Access keys on the Azure Container Registry_
 
 Go to the [Azure Portal](http://portal.azure.com)
 - Select Resource groups
@@ -50,7 +78,7 @@ Go to the [Azure Portal](http://portal.azure.com)
       - Click OK
     - Click Configure container
       - Click Azure Container Service
-        - Registry: SeanK
+        - Registry: registry
         - Image: imagerec
         - Tag: latest
       - Click OK
@@ -64,17 +92,6 @@ Go to the [Azure Portal](http://portal.azure.com)
 - Click Docker Container
   - Continuous Deployment: On
   - Click Save
-
-### Deploy to Azure
-
-From the azure cli run the following
-
-```bash
-# password can be found under Access keys on the Azure Container Registry
-$ docker login seank.azurecr.io -u SeanK -p password
-$ docker tag imagerec seank.azurecr.io/imagerec:latest
-$ docker push seank.azurecr.io/imagerec:latest
-```
 
 ### Test
 
