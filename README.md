@@ -49,8 +49,8 @@ _**Note:** registry, user and password can be found under Access keys on the Azu
 
 ```bash
 $ docker login registry.azurecr.io -u user -p password
-$ docker tag imagerec seank.azurecr.io/imagerec:latest
-$ docker push seank.azurecr.io/imagerec:latest
+$ docker tag imagerec registry.azurecr.io/imagerec:latest
+$ docker push registry.azurecr.io/imagerec:latest
 ```
 
 ### Configure Azure
