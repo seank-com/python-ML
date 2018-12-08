@@ -100,6 +100,7 @@ ENV/
 # mypy
 .mypy_cache/
 
-# Mac stu
-ff:
+# Mac stuff:
 .DS_Store
+
+data/

@@ -1,0 +1,12 @@
+
+FROM microsoft/cntk:2.1-gpu-python3.5-cuda8.0-cudnn6.0
+
+EXPOSE 80
+
+COPY notebooks/ /root/notebooks
+
+COPY jupyter-config /root/.jupyter
+
+WORKDIR /root/notebooks
+
+CMD bash -c "source /cntk/activate-cntk && jupyter-notebook"
